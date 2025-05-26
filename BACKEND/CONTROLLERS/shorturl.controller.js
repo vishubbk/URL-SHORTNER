@@ -1,9 +1,11 @@
 import { shortUrlService, getUrlService } from "../SERVICES/shorturl.service.js";
+import urlSchema from "../MODELS/shorturl.model.js";
 
 // Create short URL
 export const createShortUrl = async (req, res) => {
   try {
     const { url } = req.body;
+    
     console.log("url", url);
 
     const result = await shortUrlService(url);

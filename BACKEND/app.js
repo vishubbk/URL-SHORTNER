@@ -7,6 +7,8 @@ dotenv.config();
 import connectDB from "./CONFIG/mongo.config.js";
 import shortUrlRoutes from "./ROUTES/shorturl.routes.js";
 import { redirectFromShortUrl } from "./CONTROLLERS/shorturl.controller.js";
+import urlSchema from "./MODELS/shorturl.model.js";
+
 
 const app = express();
 connectDB();
@@ -19,13 +21,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  console.log("GET / route hit");
   res.send("hello world");
 });
 
 
 app.use("/api/create", shortUrlRoutes);
 app.get("/:id", redirectFromShortUrl);
+
+
 
 
 const PORT = process.env.PORT;
