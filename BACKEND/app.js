@@ -13,7 +13,8 @@ import urlSchema from "./MODELS/shorturl.model.js";
 const app = express();
 connectDB();
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: [
+    "http://localhost:5173", "https://url-short-p5mg.onrender.com"],
   credentials: true,
 }));
 
