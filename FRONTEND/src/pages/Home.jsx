@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import { motion } from 'framer-motion';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Home = () => {
   const [url, setUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
+  const [loading, setLoading] = useState(false)
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -18,6 +20,7 @@ const Home = () => {
     }
 
     try {
+      setLoading(true)
       const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/create`, { url });
       setShortUrl(response.data.short_url);
       toast.success('✅ Short URL generated successfully!');
@@ -25,6 +28,7 @@ const Home = () => {
       toast.error('❌ Something went wrong. Try again!');
       console.error("Error:", error.message);
     }
+    setLoading(false)
   };
 
   const handleCopy = () => {
@@ -71,7 +75,7 @@ const Home = () => {
           type='submit'
           className='bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition text-sm w-full sm:w-auto'
         >
-          Shorten
+          {loading  ? "Shortening..." : "Shorten"}
         </button>
       </motion.form>
 
@@ -119,7 +123,7 @@ const Home = () => {
           <h2 className='text-xl md:text-2xl font-semibold mb-2'>Shorten links, then track them</h2>
           <p>
             Free short links for social platforms, websites, SMS, and more. Turn links into QR codes with our{' '}
-            <a href='/' className='text-blue-600 underline'>QR code generator</a>.
+            <a href='/Qrcode' className='text-blue-600 underline'>QR code generator</a>.
           </p>
         </div>
       </div>
@@ -157,26 +161,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-6 mt-10 px-4">
-        <div className="w-full md:w-4/5 mx-auto flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-4">
-          <div>
-            <h4 className="text-xl font-semibold">Shortify</h4>
-            <p className="text-sm text-gray-400">© {new Date().getFullYear()} All rights reserved.</p>
-          </div>
-          <div className="flex gap-5">
-            <a href="https://github.com" target="_blank" rel="noreferrer">
-              <img src="https://img.icons8.com/ios-glyphs/30/ffffff/github.png" alt="GitHub" />
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer">
-              <img src="https://img.icons8.com/ios-glyphs/30/ffffff/instagram--v1.png" alt="Instagram" />
-            </a>
-            <a href="mailto:vishubbkup@gmail.com">
-              <img src="https://img.icons8.com/ios-glyphs/30/ffffff/new-post.png" alt="Email" />
-            </a>
-          </div>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 };
