@@ -14,7 +14,7 @@ const app = express();
 connectDB();
 app.use(cors({
   origin: [
-    "http://localhost:5173", "https://url-short-p5mg.onrender.com"],
+    "http://localhost:5173", "https://url-short-p5mg.onrender.com","https://shorty0.netlify.app/"],
   credentials: true,
 }));
 
