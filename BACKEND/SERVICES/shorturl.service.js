@@ -3,7 +3,6 @@ import { generateNanoId } from "../UTILES/helper.js";
 
 // Create short URL
 export const shortUrlService = async (url) => {
-  console.log("fetch done", url);
 
   if (!url) {
     throw new Error("URL is required");
