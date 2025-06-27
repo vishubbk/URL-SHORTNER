@@ -17,13 +17,23 @@ const Navbar = () => {
           {/* Navigation Links */}
           <div className="flex flex-wrap gap-3 mt-4 sm:mt-0">
             <Link to="/">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition">
+              <button className="bg-[#404095] hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition">
                 Home
               </button>
             </Link>
             <Link to="/QrCode">
               <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition">
                 QR Code Generator
+              </button>
+            </Link>
+            <Link to="/PasswordManager">
+              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition">
+                Password Manager
+              </button>
+            </Link>
+            <Link to="/DailyTask">
+              <button className="bg-[#404095] hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition">
+                Daily Task
               </button>
             </Link>
 

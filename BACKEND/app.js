@@ -14,7 +14,7 @@ const app = express();
 connectDB();
 app.use(cors({
   origin: [
-    "http://localhost:5173", "https://url-short-p5mg.onrender.com","https://shortner0.vercel.app"],
+    "http://localhost:5173", "https://url-short-p5mg.onrender.com"],
   credentials: true,
 }));
 
