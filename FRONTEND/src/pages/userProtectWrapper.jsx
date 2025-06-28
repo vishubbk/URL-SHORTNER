@@ -8,7 +8,7 @@ const NotFound = () => {
       <div className="spaceship" />
       <div className="notfound-content">
         <h1>404</h1>
-        <p>Oops! You're lost in the galaxy 🌌</p>
+        <p>Oops! You're lost in the Shortify 🌌</p>
         <a href="/" className="back-home">Return to Shortify</a>
       </div>
     </div>
