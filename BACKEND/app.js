@@ -2,10 +2,16 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
+import cookieParser from 'cookie-parser';
+
 
 
 import connectDB from "./CONFIG/mongo.config.js";
 import shortUrlRoutes from "./ROUTES/shorturl.routes.js";
+
+import passwordManagerRoutes from "./ROUTES/passwordManager.routes.js";
+import signUpRoutes from "./ROUTES/signUp.routes.js";
+import loginRoutes from "./ROUTES/login.routes.js";
 import { redirectFromShortUrl } from "./CONTROLLERS/shorturl.controller.js";
 import urlSchema from "./MODELS/shorturl.model.js";
 
@@ -20,6 +26,7 @@ app.use(cors({
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser())
 
 app.get("/", (req, res) => {
   res.send("hello world");
@@ -27,6 +34,9 @@ app.get("/", (req, res) => {
 
 
 app.use("/api/create", shortUrlRoutes);
+app.use("/api/signUp", signUpRoutes);
+app.use("/api/login", loginRoutes);
+app.use("/api/passwordManager", passwordManagerRoutes);
 app.get("/:id", redirectFromShortUrl);
 
 
