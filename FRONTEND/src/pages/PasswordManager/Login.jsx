@@ -75,7 +75,7 @@ const Login = () => {
       </div>
 
       {/* Form Section */}
-      <div className="absolute top-[25vh] rounded-tl-[17%] bg-white w-full p-4 md:p-8 min-h-[66vh]">
+      <div className="absolute top-[25vh]  bg-white w-full p-4 md:p-8 rounded-tl-[100px]  shadow-lg min-h-[66vh]">
         <p className="w-[90%] md:w-1/2 m-auto mt-5 text-center font-semibold text-base md:text-lg">
           Login to manage your Passwords and Daily Tasks
         </p>

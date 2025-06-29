@@ -63,7 +63,7 @@ setTimeout(() => {
       </div>
 
       {/* Form Section */}
-      <div className="absolute top-[30vh] rounded-tl-[17%] bg-white w-full p-4 md:p-8 min-h-[66vh]">
+      <div className="absolute top-[30vh] rounded-tl-[100px] bg-white w-full p-4 md:p-8 min-h-[66vh]">
         <p className="w-[90%] md:w-1/2 m-auto mt-5 text-center font-semibold text-base md:text-lg">
           Create an account to manage your Passwords and Daily Tasks
         </p>
