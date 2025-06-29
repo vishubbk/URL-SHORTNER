@@ -31,9 +31,9 @@ const Navbar = () => {
                 Password Manager
               </button>
             </Link>
-            <Link to="/DailyTask">
+            <Link to="/login">
               <button className="bg-[#404095] hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition">
-                Daily Task
+               Login
               </button>
             </Link>
 
