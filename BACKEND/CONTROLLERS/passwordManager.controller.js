@@ -1,4 +1,5 @@
-import passwordSchema from "../models/password.manager.js";
+import passwordSchema from "../MODELS/password.manager.js";
+
 import bcrypt from "bcrypt";
 
 // Create Password Entry
