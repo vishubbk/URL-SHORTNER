@@ -3,6 +3,8 @@ import { QRCodeCanvas } from 'qrcode.react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../components/Navbar';
+import { motion } from 'framer-motion';
+
 import Footer from '../components/Footer';
 
 const QrCode = () => {
@@ -39,7 +41,11 @@ const QrCode = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-100 to-blue-200">
       <Navbar />
-      <div className="flex flex-col items-center px-4 py-10">
+      <motion.div
+      initial={{ opacity: 0, y: -50,rotate:50 }}
+      animate={{ opacity: 1, y: 0,rotate:0 }}
+      transition={{ duration: 0.8 }}
+       className="flex flex-col items-center px-4 py-10">
         <ToastContainer />
         <h1 className="text-3xl font-bold text-gray-800 mb-4">🔍 QR Code Generator</h1>
         <p className="text-gray-600 text-center max-w-xl mb-6">
@@ -104,7 +110,7 @@ const QrCode = () => {
             </div>
           </>
         )}
-      </div>
+      </motion.div>
 {/* QR Code Info Section */}
 <div className="w-11/12 md:w-3/5 mx-auto mt-10 space-y-6 text-gray-800 text-sm md:text-base px-4">
   <div>

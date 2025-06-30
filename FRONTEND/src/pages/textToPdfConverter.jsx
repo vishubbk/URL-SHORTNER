@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import Footer from '../components/Footer';
 import { toast, Toaster } from 'react-hot-toast';
 import { FaDownload } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
 
 const TextToPDFConverter = () => {
@@ -32,10 +33,10 @@ const TextToPDFConverter = () => {
   };
 
   return (
-    <div className=''>
+    <div className='bg-gradient-to-br from-green-100 to-blue-200'>
 
 <Navbar/>
-    <div className="max-h-screen  mt-20 flex items-center justify-center bg-gradient-to-br  p-4">
+    <div className="max-h-screen   mt-20 flex items-center justify-center bg-gradient-to-br  p-4">
 
       <div className="bg-white bg-opacity-50 backdrop-blur-lg p-8 rounded-3xl shadow-xl w-full max-w-lg">
         <h1 className="text-3xl font-extrabold mb-6 text-center text-blue-700">Text to PDF Generator</h1>
@@ -64,7 +65,28 @@ const TextToPDFConverter = () => {
 
         <Toaster />
       </div>
-    </div></div>
+       {/* Info Section */}
+
+    </div>
+    <div className='w-11/12 md:w-3/5 mx-auto mt-10 space-y-6 text-gray-800 text-sm md:text-base px-4'>
+        <div>
+          <h2 className='text-xl md:text-2xl font-semibold mb-2'>A fast, easy, and free link shortener</h2>
+          <p>
+            Use this free URL shortener to change long, ugly links into memorable and trackable short URLs.
+            Better than Bitly, Tinyurl, and others.
+          </p>
+        </div>
+        <div>
+          <h2 className='text-xl md:text-2xl font-semibold mb-2'>Shorten links, then track them</h2>
+          <p>
+            Free short links for social platforms, websites, SMS, and more. Turn links into QR codes with our{' '}
+            <Link  className='text-blue-600 underline' to={"/Qrcode"}>QR code generator</Link>
+
+          </p>
+        </div>
+      </div>
+      <Footer/>
+    </div>
   );
 };
 

@@ -3,6 +3,8 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -43,8 +45,8 @@ const Home = () => {
 
       {/* Hero Section */}
       <motion.div
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: -50,rotate:50  }}
+        animate={{ opacity: 1, y: 0 ,rotate:0 }}
         transition={{ duration: 0.8 }}
         className='flex justify-center items-center mt-10 px-4'
       >
@@ -104,9 +106,12 @@ const Home = () => {
           <p className='text-sm md:text-base mt-2 mb-4'>
             Create an account to shorten links, generate QR codes, and more!
           </p>
-          <button className='bg-white text-black px-5 py-2 rounded-md hover:bg-gray-200 font-semibold text-sm md:text-base'>
+          <Link to={"/login"}>
+  <button className='bg-white text-black px-5 py-2 rounded-md hover:bg-gray-200 font-semibold text-sm md:text-base'>
             Start for Free
           </button>
+          </Link>
+
         </div>
       </div>
 
@@ -123,7 +128,8 @@ const Home = () => {
           <h2 className='text-xl md:text-2xl font-semibold mb-2'>Shorten links, then track them</h2>
           <p>
             Free short links for social platforms, websites, SMS, and more. Turn links into QR codes with our{' '}
-            <a href='/Qrcode' className='text-blue-600 underline'>QR code generator</a>.
+            <Link  className='text-blue-600 underline' to={"/Qrcode"}>QR code generator</Link>
+
           </p>
         </div>
       </div>

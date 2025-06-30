@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+
 
 
 
@@ -58,6 +61,37 @@ setTimeout(() => {
 
       {/* Top Section */}
       <div className="topSection h-[47vh] bg-blue-950 relative flex justify-center items-center rounded-bl-2xl">
+        {/* back div */}
+        <button  onClick={() => navigate(-1)}>
+          <div className='text-white text-xl cursor-pointer  h-8 w-8 rounded-2xl absolute top-6 left-6 flex items-center justify-center'>
+       <FaArrowLeft/>
+      </div>
+        </button>
+
+
+        {/* Animated Box */}
+        <motion.div
+          animate={{
+            scale: [1, 1.4, 1.4, 1, 1],
+            rotate: [0, 0, 180, 180, 0],
+            borderRadius: ["0%", "0%", "50%", "50%", "0%"],
+          }}
+          transition={{
+            duration: 2,
+            ease: "easeInOut",
+            times: [0, 0.2, 0.5, 0.8, 1],
+            repeat: Infinity,
+            repeatDelay: 1,
+          }}
+          style={{
+            width: 35,
+            height: 35,
+            backgroundColor: 'white',
+            position: 'absolute',
+            top: '28px',
+          }}
+        />
+
         <h1 className="text-white font-bold text-2xl mb-9">Create your Account</h1>
       </div>
 
