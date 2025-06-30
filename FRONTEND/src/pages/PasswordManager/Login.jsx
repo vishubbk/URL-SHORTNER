@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-import Footer from '../../components/Footer';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -135,7 +134,7 @@ const Login = () => {
         </div>
 
         <ToastContainer />
-        <Footer />
+
       </div>
     </div>
   );
