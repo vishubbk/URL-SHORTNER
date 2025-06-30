@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import Footer from '../../components/Footer';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
@@ -59,11 +58,11 @@ setTimeout(() => {
 
       {/* Top Section */}
       <div className="topSection h-[47vh] bg-blue-950 relative flex justify-center items-center rounded-bl-2xl">
-        <h1 className="text-white font-bold text-2xl mb-15 ">Create your Account</h1>
+        <h1 className="text-white font-bold text-2xl mb-9">Create your Account</h1>
       </div>
 
       {/* Form Section */}
-      <div className="absolute top-[30vh] rounded-t-[100px] bg-white w-full p-4 md:p-8 min-h-[66vh]">
+      <div className="absolute top-[25vh] rounded-tl-[100px] bg-white w-full p-4 md:p-8 min-h-[66vh]">
         <p className="w-[90%] md:w-1/2 m-auto mt-5 text-center font-semibold text-base md:text-lg">
           Create an account to manage your Passwords and Daily Tasks
         </p>
@@ -148,7 +147,7 @@ setTimeout(() => {
           </div>
         </form>
         <ToastContainer />
-        <Footer />
+        
       </div>
 
     </div>
