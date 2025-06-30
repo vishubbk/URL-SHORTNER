@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaTrash, FaEdit } from 'react-icons/fa';
 import axios from 'axios';
+import Swal from 'sweetalert2'; // ✅ Import SweetAlert2
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -27,7 +28,6 @@ const ManagePassword = () => {
         headers: { Authorization: `Bearer ${token}` }
       });
 
-      // Add 'show' property for each password
       const updatedData = data.map(item => ({ ...item, show: false }));
       setPasswordList(updatedData);
     } catch (error) {
@@ -74,7 +74,6 @@ const ManagePassword = () => {
     }
   };
 
-  // Individual eye toggle
   const toggleSinglePassword = (id) => {
     const updatedList = passwordList.map(item =>
       item._id === id ? { ...item, show: !item.show } : item
@@ -82,9 +81,81 @@ const ManagePassword = () => {
     setPasswordList(updatedList);
   };
 
-  // Show/hide password input while typing
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+
+
+  const handleEdit = async (item) => {
+    const { value: formValues } = await Swal.fire({
+      title: 'Edit Password',
+      html:
+        `<input id="swal-input1" class="swal2-input" placeholder="Website Name" value="${item.website}">` +
+        `<input id="swal-input2" class="swal2-input" placeholder="Password" value="${item.password}">`,
+      focusConfirm: false,
+      preConfirm: () => {
+        return [
+          document.getElementById('swal-input1').value,
+          document.getElementById('swal-input2').value
+        ];
+      }
+    });
+
+    if (formValues) {
+      try {
+        setLoading(true);
+        const token = localStorage.getItem('token');
+
+        await axios.put(
+          `${import.meta.env.VITE_BASE_URL}/api/passwordManager/update/${item._id}`,
+          { website: formValues[0], password: formValues[1] },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        toast.success("Password updated successfully");
+        fetchPasswords();
+        setLoading(false);
+      } catch (error) {
+        console.error("Error updating password", error);
+        toast.error("❌ Failed to update password");
+        setLoading(false);
+      }
+    }
+  };
+
+
+
+  const handleDelete = async (id, website) => {
+    try {
+      const token = localStorage.getItem('token');
+
+      const result = await Swal.fire({
+        title: `Are you sure?`,
+        text: `Do you want to delete the password for "${website}"?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+      });
+
+      if (result.isConfirmed) {
+        await axios.delete(`${import.meta.env.VITE_BASE_URL}/api/passwordManager/delete/${id}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+
+        Swal.fire('Deleted!', `Password for "${website}" has been deleted.`, 'success');
+        fetchPasswords();
+      } else {
+        Swal.fire('Cancelled', 'Your password is safe 🙂', 'info');
+      }
+
+    } catch (error) {
+      console.error("❌ Error deleting password:", error);
+      toast.error("❌ Failed to delete password");
+    }
   };
 
   return (
@@ -171,12 +242,22 @@ const ManagePassword = () => {
                     <span className='text-gray-700 max-w-60 overflow-hidden'>
                       {item.show ? item.password : '********'}
                     </span>
-                    <span
-                      onClick={() => toggleSinglePassword(item._id)}
-                      className='cursor-pointer text-gray-600'
-                    >
-                      {item.show ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
-                    </span>
+                    <div className='flex items-center space-x-4'>
+                      {/* Toggle Password */}
+                      <span onClick={() => toggleSinglePassword(item._id)} className='cursor-pointer text-gray-600'>
+                        {item.show ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+                      </span>
+
+                      {/* Edit Password */}
+                      <span onClick={() => handleEdit(item)} className='cursor-pointer text-blue-600 hover:text-blue-900'>
+                        <FaEdit size={18} />
+                      </span>
+
+                      {/* Delete Password */}
+                      <span onClick={() => handleDelete(item._id, item.website)} className='cursor-pointer text-red-600 hover:text-red-900'>
+                        <FaTrash size={18} />
+                      </span>
+                    </div>
                   </div>
                 </motion.li>
               ))}
