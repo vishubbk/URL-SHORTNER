@@ -22,6 +22,7 @@ app.use(cors({
   origin: [
     "http://localhost:5173", "https://url-short-p5mg.onrender.com"],
   credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization'] 
 }));
 
 app.use(express.json());
