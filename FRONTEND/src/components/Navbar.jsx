@@ -7,7 +7,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className='w-full shadow-md bg-white fixed top-0 left-0 z-50'>
+    <div className='w-full shadow-md bg-white  top-0 left-0 z-50'>
       <div className='flex justify-between items-center mx-4 md:mx-8 py-4'>
         {/* Logo */}
         <div className="text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-indigo-600 to-purple-600 tracking-wide drop-shadow-sm">
@@ -21,7 +21,7 @@ const Navbar = () => {
 
 
         {/* Desktop Links */}
-        <div className='hidden md:flex items-center gap-5 bg-[rgba(53,67,125,0.2)] backdrop-blur-md border border-white/30 rounded-xl shadow-md p-4'>
+        <div className='hidden md:flex items-center gap-5 bg-[rgba(50,37,90,0.23)] backdrop-blur-md border border-white/30 rounded-xl shadow-md p-4'>
           <Link to="/">
             <button className="hover:bg-blue-700 hover:text-white text-black px-4 py-2 rounded-lg text-sm font-medium transition">
               Home
